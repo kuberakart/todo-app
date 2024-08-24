@@ -1,0 +1,12 @@
+.listItem {
+  border: inherit;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.markCompletedBtn {
+  margin-left: auto;
+}
