@@ -1,0 +1,30 @@
+.todoApp {
+  background-color: aliceblue;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.todoListWrapper {
+  height: 80vh;
+  margin: 10px 50px 10px 50px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.todoItems {
+  border-radius: 5px;
+  height: max-content;
+  padding: 20px;
+  border: 2px solid blue;
+  min-width: 400px;
+}
+
+.completedItems {
+  border: 2px solid lightgreen;
+  border-radius: 5px;
+  height: max-content;
+  padding: 20px;
+  min-width: 400px;
+}
