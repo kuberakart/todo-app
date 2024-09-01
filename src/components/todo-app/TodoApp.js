@@ -12,7 +12,7 @@ function TodoApp() {
   const handleAddTodoTaskButtonClick = (todoTask) => {
     setTodoTasks([...todoTasks, todoTask]);
   };
-  const handleMarkCompletedClick = (taskIndex) => {
+  const handleCompleteTaskActionBtnClick = (taskIndex) => {
     const completedTask = todoTasks[taskIndex];
 
     // Remove the completed task from the todoTasks list
@@ -26,6 +26,17 @@ function TodoApp() {
 
     //Add the completed task to the completed task list
     setCompletedTasks([...completedTasks, completedTask]);
+  };
+
+  const handleUpdateTaskBtnClick = (editText, taskIndex) => {
+    const newTodoTasks = todoTasks.map((item, index) => {
+      if (taskIndex === index) {
+        return editText;
+      }
+      return item;
+    });
+
+    setTodoTasks(newTodoTasks);
   };
 
   return (
@@ -42,7 +53,10 @@ function TodoApp() {
               <Task
                 task={task}
                 taskIndex={index}
-                handleActionBtnClick={handleMarkCompletedClick}
+                handleCompleteTaskActionBtnClick={
+                  handleCompleteTaskActionBtnClick
+                }
+                handleUpdateTaskBtnClick={handleUpdateTaskBtnClick}
                 hideActions={false}
               />
             );
