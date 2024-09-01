@@ -1,7 +1,8 @@
 import "./Task.css";
-import { Button, Input } from "antd";
-import { CheckCircleOutlined, EditOutlined } from "@ant-design/icons";
+import { Button } from "antd";
+import { EditOutlined, CheckCircleTwoTone } from "@ant-design/icons";
 import { useState } from "react";
+import EditTask from "../edit-task/EditTask";
 
 function Task({
   task,
@@ -10,18 +11,13 @@ function Task({
   taskIndex,
   hideActions,
 }) {
-  const [editText, setEditText] = useState(task);
   const [isEditInputVisible, setIsEditInputVisible] = useState(false);
-
-  const handleTaskChange = (event) => {
-    setEditText(event.target.value);
-  };
 
   const handleEditBtnClick = () => {
     setIsEditInputVisible(true);
   };
 
-  const handleUpdateTodoTask = () => {
+  const handleUpdateTodoTask = (editText) => {
     // Update the todo task list
     handleUpdateTaskBtnClick(editText, taskIndex);
 
@@ -29,39 +25,31 @@ function Task({
     setIsEditInputVisible(false);
   };
 
+  const hideActionsWrapper = !hideActions && !isEditInputVisible;
+
   return (
     <div className="listItem" key={task}>
-      <div className="itemContent">{task}</div>
-      {!hideActions && (
+      {!isEditInputVisible && <div className="itemContent">{task}</div>}
+      <EditTask
+        task={task}
+        isEditInputVisible={isEditInputVisible}
+        handleUpdateTodoTask={handleUpdateTodoTask}
+      />
+      {hideActionsWrapper && (
         <div className="actionWrapper">
-          {!isEditInputVisible && (
-            <Button
-              onClick={handleEditBtnClick}
-              type="primary"
-              icon={<EditOutlined />}
-              shape={"circle"}
-              className="markCompletedBtn"
-            />
-          )}
-          {isEditInputVisible && (
-            <>
-              <Input value={editText} onChange={handleTaskChange} />
-              <Button
-                onClick={handleUpdateTodoTask}
-                type="primary"
-                icon={<CheckCircleOutlined />}
-                shape={"circle"}
-              />
-            </>
-          )}
-          {!isEditInputVisible && (
-            <Button
-              onClick={() => handleCompleteTaskActionBtnClick(taskIndex)}
-              type="primary"
-              icon={<CheckCircleOutlined />}
-              shape={"circle"}
-            />
-          )}
+          <Button
+            onClick={handleEditBtnClick}
+            type="primary"
+            icon={<EditOutlined />}
+            shape={"circle"}
+          />
+
+          <Button
+            onClick={() => handleCompleteTaskActionBtnClick(taskIndex)}
+            icon={<CheckCircleTwoTone twoToneColor="#52c41a" />}
+            shape={"circle"}
+            className="markCompletedBtn"
+          />
         </div>
       )}
     </div>

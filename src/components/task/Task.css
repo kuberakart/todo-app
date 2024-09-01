@@ -10,3 +10,11 @@
 .actionWrapper {
   margin-left: auto;
 }
+
+.markCompletedBtn {
+  margin-left: 5px;
+}
+
+.updateTaskBtn {
+  margin-left: 5px;
+}
